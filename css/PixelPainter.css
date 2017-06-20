@@ -3,13 +3,20 @@
   height: 100%;
 }
 
+#leftDiv {
+  float: left;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
+}
+
 .grid {
   height: 100px;
   width: 100px;
   padding: 20px;
 }
 
-.cols {
+.rows {
   display: inline-block;
   height: 100%;
   width: 20%;
@@ -37,7 +44,7 @@
   border-color: #000;
 }
 
-.colorCols {
+.colorRows {
   display: inline-block;
   height: 100%;
   width: 20%;
