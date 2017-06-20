@@ -18,27 +18,23 @@ let colors = ['#000',
 '#66cdaa'
 ];
 
-function generateGrid (numRows, numCells, nodeAttribute){
-  function name (node, attribute){
-    let atr = Object.keys(attribute);
-    for ( let i = 0; i < atr.length; i++){
-      node.setAttribute(atr[i], attribute[atr[i]]);
-    }
-  }
 
+function generateGrid (numRows, numCells){
   let grid = document.createElement("div");
   grid.className = "grid";
-  for(let i = 0; i < numRow; i++){
+  for(let i = 0; i < numRows; i++){
     let rows = document.createElement("div");
     grid.appendChild(rows);
     rows.className = "rows";
     for(let j = 0; j < numCells; j++){
       let cells = document.createElement("div");
       cells.className = "cells";
+      cells.id = j;
+      cells.addEventListener("click", clickFunction(event));
       rows.appendChild(cells);
     }
   }
-  return grid;
+  rightDiv.appendChild(grid);
 }
 
 
@@ -53,12 +49,40 @@ function generateColorGrid (numColorRows, numColorCells){
       let colorCells = document.createElement("div");
       colorCells.className = "colorCells";
       colorCells.id = j;
-      colorCells.setAttribute('style', 'background-color:' + colors[i].hex);
+      colorCells.setAttribute('style', 'background-color:' + colors[i]);
       colorRows.appendChild(colorCells);
+      colorCells.addEventListener("click", storeColor(event));
     }
   }
   leftDiv.appendChild(colorGrid);
 }
 
+
+function storeColor(event) {
+  storedColor = event.target.style.backgroundColor;
+  console.log(storedColor);
+}
+
+function clickFunction(event) {
+
+}
+
+
+
 generateColorGrid(5,1);
-//generateGrid(5,5);
+generateGrid(5,5);
+
+
+
+
+
+
+// function selectColor() {
+//   let selectedColor = event.target.style.backgroundColor;
+// }
+
+// let colorCellVar = document.querySelectorAll(".colorCells");
+// //adding on click event listener to colorgrid
+// colorCellVar.forEach.call(colorCells, function(colorCell) {
+//   colorCell.addEventListener("click", selectColor());
+// });

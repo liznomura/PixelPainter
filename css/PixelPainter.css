@@ -5,6 +5,17 @@
 
 #leftDiv {
   float: left;
+  height: 180px;
+  width: 180px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
+}
+
+#rightDiv {
+  overflow: hidden;
+  width: 500px;
+  height: 500px;
   border-width: 1px;
   border-style: solid;
   border-color: #000;
@@ -31,6 +42,8 @@
 }
 
 .colorGrid {
+  margin: auto;
+  overflow: hidden;
   height: 100px;
   width: 100px;
   padding: 20px;
