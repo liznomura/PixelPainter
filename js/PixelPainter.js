@@ -100,10 +100,6 @@ function eraseButton() {
   swatch.appendChild(eButton);
   eButton.innerHTML = "Eraser";
   eButton.addEventListener("click", erase);
-  eButton.addEventListener("click", coloring);
-  eButton.addEventListener("mousedown", mouseDown);
-  eButton.addEventListener("mouseover", mouseOver);
-  eButton.addEventListener("mouseup", mouseUp);
 }
 
 function clear(event) {
