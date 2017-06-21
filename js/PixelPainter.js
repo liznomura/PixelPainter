@@ -1,23 +1,25 @@
 /* jshint esversion: 6*/
+let painter = (function(){
 let pixelPainter = document.querySelector("#pixelPainter");
+let cellList = document.getElementsByClassName("cells");
+let storedColor = "#fff";
+let dragging = null;
 
 let title = document.createElement("div");
 title.id = "title";
+pixelPainter.appendChild(title);
+
 let swatch = document.createElement("div");
 swatch.id = "swatch";
+title.appendChild(swatch);
+
 let canvas = document.createElement("div");
 canvas.id = "canvas";
-pixelPainter.appendChild(title);
-title.appendChild(swatch);
 title.appendChild(canvas);
 
 let colors = ['#000', '#fff', '#ff0000', '#ffb6c1', '#66cdaa',
 '#7f7fff', '#ff6600', '#6600cc', '#996633', '#00ffff',
 '#66ff66', '#ffeb99', '#ffdad9', '#0066ff', '#808080'];
-
-let storedColor = "#fff";
-let dragging = null;
-let cellList = document.getElementsByClassName("cells");
 
 function generateGrid (numCols, numCells){
   let grid = document.createElement("div");
@@ -39,7 +41,6 @@ function generateGrid (numCols, numCells){
   }
   canvas.appendChild(grid);
 }
-
 
 function generateColorGrid (numColorCols, numColorCells){
   let colorGrid = document.createElement("div");
@@ -76,9 +77,6 @@ function mouseOver(event) {
     mouseUp();
   }
 }
-
-
-
 
 function storeColor(event) {
   storedColor = event.target.style.backgroundColor;
@@ -121,17 +119,11 @@ clearButton();
 eraseButton();
 generateGrid(50,50);
 
+return {
+generateGrid : generateGrid,
+generateColorGrid : generateColorGrid,
+eraseButton : eraseButton,
+clearButton : clearButton
+};
 
-
-
-
-
-// function selectColor() {
-//   let selectedColor = event.target.style.backgroundColor;
-// }
-
-// let colorCellVar = document.querySelectorAll(".colorCells");
-// //adding on click event listener to colorgrid
-// colorCellVar.forEach.call(colorCells, function(colorCell) {
-//   colorCell.addEventListener("click", selectColor());
-// });
+})();
