@@ -30,7 +30,7 @@ function generateGrid (numRows, numCells){
       let cells = document.createElement("div");
       cells.className = "cells";
       cells.id = j;
-      cells.addEventListener("click", clickFunction(event));
+      cells.addEventListener("click", coloring);
       rows.appendChild(cells);
     }
   }
@@ -51,7 +51,7 @@ function generateColorGrid (numColorRows, numColorCells){
       colorCells.id = j;
       colorCells.setAttribute('style', 'background-color:' + colors[i]);
       colorRows.appendChild(colorCells);
-      colorCells.addEventListener("click", storeColor(event));
+      colorCells.addEventListener("click", storeColor);
     }
   }
   leftDiv.appendChild(colorGrid);
@@ -63,12 +63,40 @@ function storeColor(event) {
   console.log(storedColor);
 }
 
-function clickFunction(event) {
-
+function coloring (event) {
+  event.target.style.backgroundColor = storedColor;
+  console.log(storedColor);
 }
 
+function erase(event) {
+  storedColor = "#FFF";
+}
 
+function eraseButton() {
+  let eButton = document.createElement("button");
+  eButton.className = "button";
+  leftDiv.appendChild(eButton);
+  eButton.innerHTML = "Eraser";
+  eButton.addEventListener("click", erase);
+}
 
+function clear(event) {
+  let cellList = document.getElementsByClassName("cells");
+  for(let i = 0; i < cellList.length; i++ ) {
+   cellList[i].style.backgroundColor = "#FFFFFF";
+  }
+}
+
+function clearButton() {
+  let cButton = document.createElement("button");
+  cButton.className = "button";
+  leftDiv.appendChild(cButton);
+  cButton.innerHTML = "Clear";
+  cButton.addEventListener("click", clear);
+}
+
+clearButton();
+eraseButton();
 generateColorGrid(5,1);
 generateGrid(5,5);
 
