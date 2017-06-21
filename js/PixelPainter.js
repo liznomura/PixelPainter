@@ -12,7 +12,8 @@ title.appendChild(leftDiv);
 title.appendChild(rightDiv);
 
 let colors = ['#000', '#fff', '#ff0000', '#ffb6c1', '#66cdaa',
-              '#7f7fff', '#9999ff', '#b2b2ff', '#ccccff', '#e5e5ff'];
+              '#7f7fff', '#ff6600', '#6600cc', '#996633', '#00ffff',
+              '#66ff66', '#ffeb99', '#ffdad9', '#0066ff', '#808080'];
 
 let storedColor = "#fff";
 let dragging = null;
@@ -41,7 +42,6 @@ function generateGrid (numCols, numCells){
 
 
 function generateColorGrid (numColorCols, numColorCells){
-  debugger;
   let colorGrid = document.createElement("div");
   colorGrid.className = "colorGrid";
   for(let i = 0; i < numColorCols; i++){
@@ -116,10 +116,10 @@ function clearButton() {
   cButton.addEventListener("click", clear);
 }
 
-generateColorGrid(10,2);
+generateColorGrid(15,1);
 clearButton();
 eraseButton();
-generateGrid(10,10);
+generateGrid(50,50);
 
 
 
