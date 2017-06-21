@@ -1,25 +1,35 @@
 /* jshint esversion: 6*/
-let painter = (function(){
+let painter = (function() {
 let pixelPainter = document.querySelector("#pixelPainter");
 let cellList = document.getElementsByClassName("cells");
 let storedColor = "#fff";
 let dragging = null;
 
-let title = document.createElement("div");
-title.id = "title";
-pixelPainter.appendChild(title);
+let container = document.createElement("div");
+container.id = "container";
+pixelPainter.appendChild(container);
 
 let swatch = document.createElement("div");
 swatch.id = "swatch";
-title.appendChild(swatch);
+container.appendChild(swatch);
 
 let canvas = document.createElement("div");
 canvas.id = "canvas";
-title.appendChild(canvas);
+container.appendChild(canvas);
 
 let colors = ['#000', '#fff', '#ff0000', '#ffb6c1', '#66cdaa',
 '#7f7fff', '#ff6600', '#6600cc', '#996633', '#00ffff',
 '#66ff66', '#ffeb99', '#ffdad9', '#0066ff', '#808080'];
+
+let fontLoader = function() {
+  let link = document.createElement('link');
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+
+  document.getElementsByTagName('head')[0].appendChild(link);
+
+  link.href = 'https://fonts.googleapis.com/css?family=Baloo+Bhaina';
+};
 
 function generateGrid (numCols, numCells){
   let grid = document.createElement("div");
@@ -114,12 +124,14 @@ function clearButton() {
   cButton.addEventListener("click", clear);
 }
 
+fontLoader();
 generateColorGrid(15,1);
 clearButton();
 eraseButton();
-generateGrid(50,50);
+generateGrid(100,100);
 
 return {
+fontLoader : fontLoader,
 generateGrid : generateGrid,
 generateColorGrid : generateColorGrid,
 eraseButton : eraseButton,
