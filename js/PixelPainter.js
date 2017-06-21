@@ -3,17 +3,17 @@ let pixelPainter = document.querySelector("#pixelPainter");
 
 let title = document.createElement("div");
 title.id = "title";
-let leftDiv = document.createElement("div");
-leftDiv.id = "leftDiv";
-let rightDiv = document.createElement("div");
-rightDiv.id = "rightDiv";
+let swatch = document.createElement("div");
+swatch.id = "swatch";
+let canvas = document.createElement("div");
+canvas.id = "canvas";
 pixelPainter.appendChild(title);
-title.appendChild(leftDiv);
-title.appendChild(rightDiv);
+title.appendChild(swatch);
+title.appendChild(canvas);
 
 let colors = ['#000', '#fff', '#ff0000', '#ffb6c1', '#66cdaa',
-              '#7f7fff', '#ff6600', '#6600cc', '#996633', '#00ffff',
-              '#66ff66', '#ffeb99', '#ffdad9', '#0066ff', '#808080'];
+'#7f7fff', '#ff6600', '#6600cc', '#996633', '#00ffff',
+'#66ff66', '#ffeb99', '#ffdad9', '#0066ff', '#808080'];
 
 let storedColor = "#fff";
 let dragging = null;
@@ -37,7 +37,7 @@ function generateGrid (numCols, numCells){
       cols.appendChild(cells);
     }
   }
-  rightDiv.appendChild(grid);
+  canvas.appendChild(grid);
 }
 
 
@@ -57,7 +57,7 @@ function generateColorGrid (numColorCols, numColorCells){
       colorCells.addEventListener("click", storeColor);
     }
   }
-  leftDiv.appendChild(colorGrid);
+  swatch.appendChild(colorGrid);
 }
 
 function mouseDown(event) {
@@ -97,21 +97,25 @@ function erase(event) {
 function eraseButton() {
   let eButton = document.createElement("button");
   eButton.className = "button";
-  leftDiv.appendChild(eButton);
+  swatch.appendChild(eButton);
   eButton.innerHTML = "Eraser";
   eButton.addEventListener("click", erase);
+  eButton.addEventListener("click", coloring);
+  eButton.addEventListener("mousedown", mouseDown);
+  eButton.addEventListener("mouseover", mouseOver);
+  eButton.addEventListener("mouseup", mouseUp);
 }
 
 function clear(event) {
   for(let i = 0; i < cellList.length; i++ ) {
    cellList[i].style.backgroundColor = "#FFFFFF";
-  }
+ }
 }
 
 function clearButton() {
   let cButton = document.createElement("button");
   cButton.className = "button";
-  leftDiv.appendChild(cButton);
+  swatch.appendChild(cButton);
   cButton.innerHTML = "Clear";
   cButton.addEventListener("click", clear);
 }
