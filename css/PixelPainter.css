@@ -10,8 +10,8 @@ h1 {
 #leftDiv {
   margin: auto;
   position: relative;
-  height: 80px;
-  width: 170px;
+  height: 95px;
+  width: 150px;
   text-align: center;
 }
 
@@ -22,8 +22,8 @@ h1 {
   width: 495px;
   height: 495px;
   border: none;
-  border-left: 1px solid black;
-  border-top: 1px solid black;
+  border-left: 1px solid #808080;
+  border-top: 1px solid #808080;
 }
 
 .grid {
@@ -38,7 +38,7 @@ h1 {
   height: 100%;
   width: 2%;
   border: none;
-  border-right: 1px solid black;
+  border-right: 1px solid #808080;
 }
 
 .cells {
@@ -47,25 +47,29 @@ h1 {
   height: 2%;
   width: 100%;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #808080;
 }
 
 .colorGrid {
   margin: auto;
   overflow: hidden;
   width: 100px;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: #000;
+
 }
 
 .colorCols {
   display: inline-block;
-  height: 100%;
+  height: 20%;
   width: 20%;
 }
 
 .colorCells {
-  height: 20%;
-  width: 100%;
-  border-style: solid;
-  border-width: 0.5px;
-  border-color: #000;
+  height: 100%;
+  width: 100%;}
+
+.button {
+  margin: 2px;
 }
