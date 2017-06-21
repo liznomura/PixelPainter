@@ -11,51 +11,73 @@ pixelPainter.appendChild(title);
 title.appendChild(leftDiv);
 title.appendChild(rightDiv);
 
-let colors = ['#000',
-'#fff',
-'#ff0000',
-'#ffb6c1',
-'#66cdaa'
-];
+let colors = ['#000', '#fff', '#ff0000', '#ffb6c1', '#66cdaa',
+              '#7f7fff', '#9999ff', '#b2b2ff', '#ccccff', '#e5e5ff'];
 
+let storedColor = "#fff";
+let dragging = null;
+let cellList = document.getElementsByClassName("cells");
 
-function generateGrid (numRows, numCells){
+function generateGrid (numCols, numCells){
   let grid = document.createElement("div");
   grid.className = "grid";
-  for(let i = 0; i < numRows; i++){
-    let rows = document.createElement("div");
-    grid.appendChild(rows);
-    rows.className = "rows";
+  for(let i = 0; i < numCols; i++){
+    let cols = document.createElement("div");
+    grid.appendChild(cols);
+    cols.className = "cols";
     for(let j = 0; j < numCells; j++){
       let cells = document.createElement("div");
       cells.className = "cells";
       cells.id = j;
       cells.addEventListener("click", coloring);
-      rows.appendChild(cells);
+      cells.addEventListener("mousedown", mouseDown);
+      cells.addEventListener("mouseover", mouseOver);
+      cells.addEventListener("mouseup", mouseUp);
+      cols.appendChild(cells);
     }
   }
   rightDiv.appendChild(grid);
 }
 
 
-function generateColorGrid (numColorRows, numColorCells){
+function generateColorGrid (numColorCols, numColorCells){
+  debugger;
   let colorGrid = document.createElement("div");
   colorGrid.className = "colorGrid";
-  for(let i = 0; i < numColorRows; i++){
-    let colorRows = document.createElement("div");
-    colorGrid.appendChild(colorRows);
-    colorRows.className = "colorRows";
+  for(let i = 0; i < numColorCols; i++){
+    let colorCols = document.createElement("div");
+    colorGrid.appendChild(colorCols);
+    colorCols.className = "colorCols";
     for(let j = 0; j < numColorCells; j++){
       let colorCells = document.createElement("div");
       colorCells.className = "colorCells";
       colorCells.id = j;
       colorCells.setAttribute('style', 'background-color:' + colors[i]);
-      colorRows.appendChild(colorCells);
+      colorCols.appendChild(colorCells);
       colorCells.addEventListener("click", storeColor);
     }
   }
   leftDiv.appendChild(colorGrid);
 }
+
+function mouseDown(event) {
+  dragging = true;
+  this.style.backgroundColor = storedColor;
+}
+
+function mouseUp(event) {
+  dragging = false;
+}
+
+function mouseOver(event) {
+  if (dragging === true) {
+    this.style.backgroundColor = storedColor;
+  } else {
+    mouseUp();
+  }
+}
+
+
 
 
 function storeColor(event) {
@@ -81,7 +103,6 @@ function eraseButton() {
 }
 
 function clear(event) {
-  let cellList = document.getElementsByClassName("cells");
   for(let i = 0; i < cellList.length; i++ ) {
    cellList[i].style.backgroundColor = "#FFFFFF";
   }
@@ -95,10 +116,10 @@ function clearButton() {
   cButton.addEventListener("click", clear);
 }
 
+generateColorGrid(10,2);
 clearButton();
 eraseButton();
-generateColorGrid(5,1);
-generateGrid(5,5);
+generateGrid(10,10);
 
 
 
