@@ -7,16 +7,19 @@ h1 {
   padding-top: 25px;
   font-family: 'Baloo Bhaina';
   text-align: center;
+  margin: 0px;
+}
+
+#pixelPainter {
+  margin: auto;
+  width: 65%;
+  height: 65%;
+  border: 1px solid #000;
 }
 
 #container {
   height: 100%;
-}
-
-#pixelPainter {
-  width: 100%;
-  height: 70%;
-  padding: 10px 0px 10px 0px;
+  padding: 27px 10px 10px 10px;
 }
 
 #swatch{
