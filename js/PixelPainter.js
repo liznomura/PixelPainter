@@ -140,12 +140,20 @@ function clearButton() {
   cButton.addEventListener("click", clear);
 }
 
+function gridToggle() {
+  let gridToggleButton = document.createElement("button");
+  gridToggleButton.className = "button";
+  tools.appendChild(gridToggleButton);
+  gridToggleButton.innerHTML = "Hide Grid";
+}
+
 fontLoader();
 generateColorGrid(15,1);
 toolsDiv();
 clearButton();
 currentColorDiv();
 eraseButton();
+gridToggle();
 generateGrid(100,100);
 
 return {
