@@ -5,17 +5,22 @@ let cellList = document.getElementsByClassName("cells");
 let storedColor = "#fff";
 let dragging = null;
 
-let container = document.createElement("div");
-container.id = "container";
-pixelPainter.appendChild(container);
+let header = document.createElement("h1");
+header.innerHTML = "Pixel Painter";
+pixelPainter.appendChild(header);
+document.body.appendChild(pixelPainter);
+
+let innerContainer = document.createElement("div");
+innerContainer.id = "innerContainer";
+pixelPainter.appendChild(innerContainer);
 
 let swatch = document.createElement("div");
 swatch.id = "swatch";
-container.appendChild(swatch);
+innerContainer.appendChild(swatch);
 
 let canvas = document.createElement("div");
 canvas.id = "canvas";
-container.appendChild(canvas);
+innerContainer.appendChild(canvas);
 
 function toolsDiv() {
   let tools = document.createElement("div");
@@ -28,7 +33,6 @@ let showCurrentColor = document.createElement("div");
 showCurrentColor.id = "showCurrentColor";
 tools.appendChild(showCurrentColor);
 }
-
 
 let colors = ["#000", "#fff", "#ff0000 ", "#ffb6c1 ", "#66cdaa ",
 "#7f7fff ", "#ff6600 ", "#6600cc ", "#996633 ", "#00ffff ",
