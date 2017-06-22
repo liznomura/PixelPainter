@@ -1,37 +1,47 @@
 /*jshint esversion: 6*/
 let painter = (function() {
-let pixelPainter = document.querySelector("#pixelPainter");
-let cellList = document.getElementsByClassName("cells");
-let storedColor = "#fff";
-let dragging = null;
+  let pixelPainter = document.querySelector("#pixelPainter");
+  let cellList = document.getElementsByClassName("cells");
+  let elementCols = document.getElementsByClassName("cols");
+  let elementCanvas = document.getElementById("canvas");
+  let storedColor = "#fff";
+  let dragging = null;
+
+//getting rid of magic strings
+const CLICK = "click";
+const DIV = "div";
+const BUTTON = "button";
+const MOUSEDOWN = "mousedown";
+const MOUSEOVER = "mouseover";
+const MOUSEUP = "mouseup";
 
 let header = document.createElement("h1");
 header.innerHTML = "Pixel Painter";
 pixelPainter.appendChild(header);
 document.body.appendChild(pixelPainter);
 
-let innerContainer = document.createElement("div");
+let innerContainer = document.createElement(DIV);
 innerContainer.id = "innerContainer";
 pixelPainter.appendChild(innerContainer);
 
-let swatch = document.createElement("div");
+let swatch = document.createElement(DIV);
 swatch.id = "swatch";
 innerContainer.appendChild(swatch);
 
-let canvas = document.createElement("div");
+let canvas = document.createElement(DIV);
 canvas.id = "canvas";
 innerContainer.appendChild(canvas);
 
 function toolsDiv() {
-  let tools = document.createElement("div");
+  let tools = document.createElement(DIV);
   tools.id = "tools";
   swatch.appendChild(tools);
 }
 
 function currentColorDiv() {
-let showCurrentColor = document.createElement("div");
-showCurrentColor.id = "showCurrentColor";
-tools.appendChild(showCurrentColor);
+  let showCurrentColor = document.createElement(DIV);
+  showCurrentColor.id = "showCurrentColor";
+  tools.appendChild(showCurrentColor);
 }
 
 let colors = ["#000", "#fff", "#ff0000 ", "#ffb6c1 ", "#66cdaa ",
@@ -42,27 +52,25 @@ let fontLoader = function() {
   let link = document.createElement("link");
   link.type = "text/css";
   link.rel = "stylesheet";
-
-document.getElementsByTagName("head")[0].appendChild(link);
-
-link.href = "https://fonts.googleapis.com/css?family=Baloo+Bhaina";
+  document.getElementsByTagName("head")[0].appendChild(link);
+  link.href = "https://fonts.googleapis.com/css?family=Baloo+Bhaina";
 };
 
 function generateGrid (numCols, numCells){
-  let grid = document.createElement("div");
+  let grid = document.createElement(DIV);
   grid.className = "grid";
   for(let i = 0; i < numCols; i++){
-    let cols = document.createElement("div");
+    let cols = document.createElement(DIV);
     grid.appendChild(cols);
     cols.className = "cols";
     for(let j = 0; j < numCells; j++){
-      let cells = document.createElement("div");
+      let cells = document.createElement(DIV);
       cells.className = "cells";
       cells.id = j;
-      cells.addEventListener("click", coloring);
-      cells.addEventListener("mousedown", mouseDown);
-      cells.addEventListener("mouseover", mouseOver);
-      cells.addEventListener("mouseup", mouseUp);
+      cells.addEventListener(CLICK, coloring);
+      cells.addEventListener(MOUSEDOWN, mouseDown);
+      cells.addEventListener(MOUSEOVER, mouseOver);
+      cells.addEventListener(MOUSEUP, mouseUp);
       cols.appendChild(cells);
     }
   }
@@ -70,19 +78,19 @@ function generateGrid (numCols, numCells){
 }
 
 function generateColorGrid (numColorCols, numColorCells){
-  let colorGrid = document.createElement("div");
+  let colorGrid = document.createElement(DIV);
   colorGrid.className = "colorGrid";
   for(let i = 0; i < numColorCols; i++){
-    let colorCols = document.createElement("div");
+    let colorCols = document.createElement(DIV);
     colorGrid.appendChild(colorCols);
     colorCols.className = "colorCols";
     for(let j = 0; j < numColorCells; j++){
-      let colorCells = document.createElement("div");
+      let colorCells = document.createElement(DIV);
       colorCells.className = "colorCells";
       colorCells.id = j;
       colorCells.setAttribute("style", "background-color:" + colors[i]);
       colorCols.appendChild(colorCells);
-      colorCells.addEventListener("click", storeColor);
+      colorCells.addEventListener(CLICK, storeColor);
     }
   }
   swatch.appendChild(colorGrid);
@@ -119,32 +127,54 @@ function erase(event) {
 }
 
 function eraseButton() {
-  let eButton = document.createElement("button");
-  eButton.className = "button";
+  let eButton = document.createElement(BUTTON);
+  eButton.className = BUTTON;
   tools.appendChild(eButton);
   eButton.innerHTML = "Eraser";
-  eButton.addEventListener("click", erase);
+  eButton.addEventListener(CLICK, erase);
 }
 
 function clear(event) {
   for(let i = 0; i < cellList.length; i++ ) {
-   cellList[i].style.backgroundColor = "#FFFFFF ";
+    cellList[i].style.backgroundColor = "#FFF";
  }
 }
 
 function clearButton() {
-  let cButton = document.createElement("button");
-  cButton.className = "button";
+  let cButton = document.createElement(BUTTON);
+  cButton.className = BUTTON;
   tools.appendChild(cButton);
   cButton.innerHTML = "Clear";
-  cButton.addEventListener("click", clear);
+  cButton.addEventListener(CLICK, clear);
 }
 
-function gridToggle() {
-  let gridToggleButton = document.createElement("button");
-  gridToggleButton.className = "button";
-  tools.appendChild(gridToggleButton);
-  gridToggleButton.innerHTML = "Hide Grid";
+function toggleGrid() {
+  let toggleHideButton = document.createElement(BUTTON);
+  toggleHideButton.className = BUTTON;
+  toggleHideButton.id = "toggleHideButton";
+  tools.appendChild(toggleHideButton);
+  toggleHideButton.innerHTML = "Hide Grid";
+  toggleHideButton.addEventListener(CLICK, toggleHide);
+}
+
+function toggleHide() {
+  if(toggleHideButton.innerHTML === "Hide Grid") {
+  for(let i = 0; i < elementCols.length; i++) {
+    elementCols[i].style.border = "none";
+  }
+  for (let j = 0; j < cellList.length; j++) {
+    cellList[j].style.border = "none";
+  }
+    toggleHideButton.innerHTML = "Show Grid";
+} else if(toggleHideButton.innerHTML === "Show Grid") {
+    for(let i = 0; i < elementCols.length; i++) {
+    elementCols[i].style.borderRight = "1px solid #bfbfbf";
+  }
+  for (let j = 0; j < cellList.length; j++) {
+    cellList[j].style.borderBottom = "1px solid #bfbfbf";
+  }
+  toggleHideButton.innerHTML = "Hide Grid";
+}
 }
 
 fontLoader();
@@ -153,17 +183,18 @@ toolsDiv();
 clearButton();
 currentColorDiv();
 eraseButton();
-gridToggle();
+toggleGrid();
 generateGrid(100,100);
 
 return {
-currentColorDiv : currentColorDiv,
-toolsDiv : toolsDiv,
-fontLoader : fontLoader,
-generateGrid : generateGrid,
-generateColorGrid : generateColorGrid,
-eraseButton : eraseButton,
-clearButton : clearButton
+  currentColorDiv : currentColorDiv,
+  toolsDiv : toolsDiv,
+  fontLoader : fontLoader,
+  generateGrid : generateGrid,
+  generateColorGrid : generateColorGrid,
+  eraseButton : eraseButton,
+  clearButton : clearButton,
+  toggleGrid : toggleGrid
 };
 
 })();
