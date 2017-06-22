@@ -38,11 +38,9 @@ h1 {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  width: 490px;
-  height: 490px;
-  border: none;
-  border-left: 1px solid #bfbfbf ;
-  border-top: 1px solid #bfbfbf ;
+  width: 495px;
+  height: 495px;
+  border: 1px 0px 0px 1px;
 }
 
 #tools {
