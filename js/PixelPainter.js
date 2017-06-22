@@ -21,18 +21,24 @@ let showCurrentColor = document.createElement("div");
 showCurrentColor.id = "showCurrentColor";
 swatch.appendChild(showCurrentColor);
 
+<<<<<<< HEAD
 let colors = ['#000', '#fff', '#ff0000', '#ffb6c1', '#66cdaa',
 '#7f7fff', '#ff6600', '#6600cc', '#996633', '#00ffff',
 '#66ff66', '#ffeb99', '#ffdad9', '#0066ff', '#808080'];
+=======
+let colors = ['#000', '#fff', '#ff0000 ', '#ffb6c1 ', '#66cdaa ',
+'#7f7fff ', '#ff6600 ', '#6600cc ', '#996633 ', '#00ffff ',
+'#66ff66 ', '#ffeb99 ', '#ffdad9 ', '#0066ff ', '#808080 '];
+>>>>>>> 655149f5efe0e7ea98dedfe42bc251d367d427b7
 
 let fontLoader = function() {
   let link = document.createElement('link');
   link.type = 'text/css';
   link.rel = 'stylesheet';
 
-  document.getElementsByTagName('head')[0].appendChild(link);
+ document.getElementsByTagName('head')[0].appendChild(link);
 
-  link.href = 'https://fonts.googleapis.com/css?family=Baloo+Bhaina';
+ link.href = 'https://fonts.googleapis.com/css?family=Baloo+Bhaina';
 };
 
 function generateGrid (numCols, numCells){
@@ -118,7 +124,7 @@ function eraseButton() {
 
 function clear(event) {
   for(let i = 0; i < cellList.length; i++ ) {
-   cellList[i].style.backgroundColor = "#FFFFFF";
+   cellList[i].style.backgroundColor = "#FFFFFF ";
  }
 }
 
