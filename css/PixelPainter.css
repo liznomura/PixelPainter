@@ -84,8 +84,14 @@ h1 {
 
 .colorCells {
   height: 100%;
-  width: 100%;}
+  width: 100%;
+}
+
+.colorCells:hover {
+  border: 1px solid #fff;
+}
 
 .button {
+  cursor: url(http://68.media.tumblr.com/9a4822e68993438e5d7e2c12771368f4/tumblr_inline_mfzguogCaB1qbs47q.png), auto;
   margin: 2px;
 }
