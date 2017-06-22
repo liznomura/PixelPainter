@@ -1,4 +1,4 @@
-/* jshint esversion: 6*/
+/*jshint esversion: 6*/
 let painter = (function() {
 let pixelPainter = document.querySelector("#pixelPainter");
 let cellList = document.getElementsByClassName("cells");
@@ -17,28 +17,31 @@ let canvas = document.createElement("div");
 canvas.id = "canvas";
 container.appendChild(canvas);
 
+function toolsDiv() {
+  let tools = document.createElement("div");
+  tools.id = "tools";
+  swatch.appendChild(tools);
+}
+
+function currentColorDiv() {
 let showCurrentColor = document.createElement("div");
 showCurrentColor.id = "showCurrentColor";
-swatch.appendChild(showCurrentColor);
+tools.appendChild(showCurrentColor);
+}
 
-<<<<<<< HEAD
-let colors = ['#000', '#fff', '#ff0000', '#ffb6c1', '#66cdaa',
-'#7f7fff', '#ff6600', '#6600cc', '#996633', '#00ffff',
-'#66ff66', '#ffeb99', '#ffdad9', '#0066ff', '#808080'];
-=======
-let colors = ['#000', '#fff', '#ff0000 ', '#ffb6c1 ', '#66cdaa ',
-'#7f7fff ', '#ff6600 ', '#6600cc ', '#996633 ', '#00ffff ',
-'#66ff66 ', '#ffeb99 ', '#ffdad9 ', '#0066ff ', '#808080 '];
->>>>>>> 655149f5efe0e7ea98dedfe42bc251d367d427b7
+
+let colors = ["#000", "#fff", "#ff0000 ", "#ffb6c1 ", "#66cdaa ",
+"#7f7fff ", "#ff6600 ", "#6600cc ", "#996633 ", "#00ffff ",
+"#66ff66 ", "#ffeb99 ", "#ffdad9 ", "#0066ff ", "#808080 "];
 
 let fontLoader = function() {
-  let link = document.createElement('link');
-  link.type = 'text/css';
-  link.rel = 'stylesheet';
+  let link = document.createElement("link");
+  link.type = "text/css";
+  link.rel = "stylesheet";
 
- document.getElementsByTagName('head')[0].appendChild(link);
+document.getElementsByTagName("head")[0].appendChild(link);
 
- link.href = 'https://fonts.googleapis.com/css?family=Baloo+Bhaina';
+link.href = "https://fonts.googleapis.com/css?family=Baloo+Bhaina";
 };
 
 function generateGrid (numCols, numCells){
@@ -73,7 +76,7 @@ function generateColorGrid (numColorCols, numColorCells){
       let colorCells = document.createElement("div");
       colorCells.className = "colorCells";
       colorCells.id = j;
-      colorCells.setAttribute('style', 'background-color:' + colors[i]);
+      colorCells.setAttribute("style", "background-color:" + colors[i]);
       colorCols.appendChild(colorCells);
       colorCells.addEventListener("click", storeColor);
     }
@@ -100,9 +103,6 @@ function mouseOver(event) {
 
 function storeColor(event) {
   storedColor = event.target.style.backgroundColor;
-}
-
-function currentColor(event) {
   showCurrentColor.style.backgroundColor = storedColor;
 }
 
@@ -117,7 +117,7 @@ function erase(event) {
 function eraseButton() {
   let eButton = document.createElement("button");
   eButton.className = "button";
-  swatch.appendChild(eButton);
+  tools.appendChild(eButton);
   eButton.innerHTML = "Eraser";
   eButton.addEventListener("click", erase);
 }
@@ -131,19 +131,22 @@ function clear(event) {
 function clearButton() {
   let cButton = document.createElement("button");
   cButton.className = "button";
-  swatch.appendChild(cButton);
+  tools.appendChild(cButton);
   cButton.innerHTML = "Clear";
   cButton.addEventListener("click", clear);
 }
-currentColor();
+
 fontLoader();
 generateColorGrid(15,1);
+toolsDiv();
 clearButton();
+currentColorDiv();
 eraseButton();
 generateGrid(100,100);
 
 return {
-currentColor : currentColor,
+currentColorDiv : currentColorDiv,
+toolsDiv : toolsDiv,
 fontLoader : fontLoader,
 generateGrid : generateGrid,
 generateColorGrid : generateColorGrid,
