@@ -17,18 +17,22 @@ let canvas = document.createElement("div");
 canvas.id = "canvas";
 container.appendChild(canvas);
 
-let colors = ['#000', '#fff', '#ff0000', '#ffb6c1', '#66cdaa',
-'#7f7fff', '#ff6600', '#6600cc', '#996633', '#00ffff',
-'#66ff66', '#ffeb99', '#ffdad9', '#0066ff', '#808080'];
+let showCurrentColor = document.createElement("div");
+showCurrentColor.id = "showCurrentColor";
+swatch.appendChild(showCurrentColor);
+
+let colors = ['#000', '#fff', '#ff0000 ', '#ffb6c1 ', '#66cdaa ',
+'#7f7fff ', '#ff6600 ', '#6600cc ', '#996633 ', '#00ffff ',
+'#66ff66 ', '#ffeb99 ', '#ffdad9 ', '#0066ff ', '#808080 '];
 
 let fontLoader = function() {
   let link = document.createElement('link');
   link.type = 'text/css';
   link.rel = 'stylesheet';
 
-  document.getElementsByTagName('head')[0].appendChild(link);
+ document.getElementsByTagName('head')[0].appendChild(link);
 
-  link.href = 'https://fonts.googleapis.com/css?family=Baloo+Bhaina';
+ link.href = 'https://fonts.googleapis.com/css?family=Baloo+Bhaina';
 };
 
 function generateGrid (numCols, numCells){
@@ -90,12 +94,14 @@ function mouseOver(event) {
 
 function storeColor(event) {
   storedColor = event.target.style.backgroundColor;
-  console.log(storedColor);
+}
+
+function currentColor(event) {
+  showCurrentColor.style.backgroundColor = storedColor;
 }
 
 function coloring (event) {
   event.target.style.backgroundColor = storedColor;
-  console.log(storedColor);
 }
 
 function erase(event) {
@@ -112,7 +118,7 @@ function eraseButton() {
 
 function clear(event) {
   for(let i = 0; i < cellList.length; i++ ) {
-   cellList[i].style.backgroundColor = "#FFFFFF";
+   cellList[i].style.backgroundColor = "#FFFFFF ";
  }
 }
 
@@ -123,7 +129,7 @@ function clearButton() {
   cButton.innerHTML = "Clear";
   cButton.addEventListener("click", clear);
 }
-
+currentColor();
 fontLoader();
 generateColorGrid(15,1);
 clearButton();
@@ -131,6 +137,7 @@ eraseButton();
 generateGrid(100,100);
 
 return {
+currentColor : currentColor,
 fontLoader : fontLoader,
 generateGrid : generateGrid,
 generateColorGrid : generateColorGrid,
