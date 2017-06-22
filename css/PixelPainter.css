@@ -1,21 +1,27 @@
 body {
   margin: 0px;
   cursor: url(http://68.media.tumblr.com/9a4822e68993438e5d7e2c12771368f4/tumblr_inline_mfzguogCaB1qbs47q.png), auto;
+  background-image: url(http://orig10.deviantart.net/0289/f/2013/130/e/1/tiling_alpaca_background_by_x_burner-d64sshr.png
+
+);
 }
 
 h1 {
-  padding-top: 25px;
-  font-family: 'Baloo Bhaina';
+  border-radius: 50%;
+  font-family: "Baloo Bhaina";
   text-align: center;
-  margin: 0px;
+  margin: auto;
+  width: 400px;
+  background-color: #fff;
 }
 
 #pixelPainter {
   margin: auto;
-  padding: 10px;
+  padding: 20px 10px 0px 10px;
   width: 65%;
   height: 65%;
   border: 1px solid #000;
+  background-color: rgba(255,255,255,0.9);
 }
 
 #container {
@@ -38,8 +44,22 @@ h1 {
   width: 490px;
   height: 490px;
   border: none;
-  border-left: 1px solid #bfbfbf;
-  border-top: 1px solid #bfbfbf;
+  border-left: 1px solid #bfbfbf ;
+  border-top: 1px solid #bfbfbf ;
+}
+
+#tools {
+  margin: auto;
+  height: 38px;
+  width: 100%;
+}
+
+#showCurrentColor {
+  margin: 10px 5px 0px 5px;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
 }
 
 .grid {
@@ -47,6 +67,7 @@ h1 {
   overflow: hidden;
   height: 100%;
   width: 100%;
+  background-color: #fff;
 }
 
 .cols {
@@ -54,7 +75,7 @@ h1 {
   height: 100%;
   width: 1%;
   border: none;
-  border-right: 1px solid #bfbfbf;
+  border-right: 1px solid #bfbfbf ;
 }
 
 .cells {
@@ -63,7 +84,7 @@ h1 {
   height: 1%;
   width: 100%;
   border: none;
-  border-bottom: 1px solid #bfbfbf;
+  border-bottom: 1px solid #bfbfbf ;
 }
 
 .colorGrid {
@@ -73,7 +94,6 @@ h1 {
   border-style: solid;
   border-width: 0.5px;
   border-color: #000;
-
 }
 
 .colorCols {
@@ -92,6 +112,7 @@ h1 {
 }
 
 .button {
+  display: inline-block;
   cursor: url(http://68.media.tumblr.com/9a4822e68993438e5d7e2c12771368f4/tumblr_inline_mfzguogCaB1qbs47q.png), auto;
-  margin: 2px;
+  margin: 0px;
 }
