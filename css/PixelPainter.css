@@ -22,6 +22,7 @@ h1 {
 }
 
 #innerContainer {
+  position: relative;
 }
 
 #swatch{
@@ -38,8 +39,8 @@ h1 {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  width: 495px;
-  height: 495px;
+  width: 600px;
+  height: 600px;
   border: 1px 0px 0px 1px;
 }
 
@@ -70,7 +71,7 @@ h1 {
 .cols {
   display: inline-block;
   height: 100%;
-  width: 1%;
+  width: 0.5%;
   border: none;
   border-right: 1px solid #bfbfbf ;
 }
@@ -78,7 +79,7 @@ h1 {
 .cells {
   display: inline-block;
   float: left;
-  height: 1%;
+  height: 0.5%;
   width: 100%;
   border: none;
   border-bottom: 1px solid #bfbfbf ;
