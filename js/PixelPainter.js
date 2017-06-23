@@ -63,10 +63,11 @@ function generateGrid (numCols, numCells){
     let cols = document.createElement(DIV);
     grid.appendChild(cols);
     cols.className = "cols";
+    cols.id = i;
     for(let j = 0; j < numCells; j++){
       let cells = document.createElement(DIV);
       cells.className = "cells";
-      cells.id = j;
+      cells.id = (100 * i) + j;
       cells.addEventListener(CLICK, coloring);
       cells.addEventListener(MOUSEDOWN, mouseDown);
       cells.addEventListener(MOUSEOVER, mouseOver);
@@ -184,7 +185,7 @@ clearButton();
 currentColorDiv();
 eraseButton();
 toggleGrid();
-generateGrid(100,100);
+generateGrid(150,150);
 
 return {
   currentColorDiv : currentColorDiv,
